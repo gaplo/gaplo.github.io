@@ -7,6 +7,8 @@ app.constant('config', {
     'INSURANCE_HS_CR': 3800.00,      // Health screening allowance 3800.00
     'ORSO_EMPLOYER_CON_MIN': 10.00,  // ORSO - Employer min contribution 10.00%
     'ORSO_EMPLOYER_CON_MAX': 12.50,  // ORSO - Employer max contribution 12.50%
+    'STATUTORY_MAX': 22500.00,       // Termination payment - max monthly wages
+    'STATUTORY_FACTOR': 2/3          // Termination payment - Statutory Payment amount factor
 });
 
 app.controller('CalcCtrl', ['$scope', '$window', 'config',
@@ -25,8 +27,12 @@ app.controller('CalcCtrl', ['$scope', '$window', 'config',
         $scope.leave=0;
         $scope.children=0;
 
+        $scope.getMonthlyWages = function() {
+            return _.round($scope.base/12, 2);
+        }
+
         $scope.getMpf = function() {
-            return $window.Math.min($scope.mpfEmployerCap, $scope.base * ($scope.mpfEmployer/100.00));
+            return _.min([$scope.mpfEmployerCap, $scope.base * ($scope.mpfEmployer/100.00)]);
         };
 
         $scope.getInsurance = function() {
@@ -79,6 +85,18 @@ app.controller('CalcCtrl', ['$scope', '$window', 'config',
 
         $scope.getBreakEvenPercent = function() {
             return _.round(($scope.getTotal()/$scope.base - 1)*100, 2);
+        };
+
+        $scope.getStatutory = function() {
+            return _.round(_.min([config.STATUTORY_MAX, $scope.getMonthlyWages()]) * config.STATUTORY_FACTOR * ($scope.dirConYear + $scope.permYear), 2);
+        };
+
+        $scope.getSeverance = function() {
+            return _.round($scope.permYear * $scope.getMonthlyWages() + $scope.dirConYear * _.min([config.STATUTORY_MAX, $scope.getMonthlyWages()]) * config.STATUTORY_FACTOR - $scope.getStatutory(), 2);
+        };
+
+        $scope.getTotalTermPay = function() {
+            return $scope.getStatutory() + $scope.getSeverance();
         }
     }
 ]);

@@ -24,6 +24,10 @@
             Number of Annual Leave(s): <input type="number" min="0" ng-model="leave" placeholder="Enter the number of annual leave(s)">
         </div>
         <div>
+            Year(s) of direct contract: <input type="number" min="0" step="0.01" ng-model="dirConYear" placeholder="Enter year(s) of direct contract"><br>
+            Year(s) of service (permanent): <input type="number" min="0" step="0.01" ng-model="permYear" placeholder="Enter year(s) of service (permanent)">
+        </div>
+        <div>
             Meal Claim/Call out: <input type="number" min="0" step="0.01" ng-model="meal" placeholder="Enter meal claim or call out amount">
         </div>
         <div>
@@ -51,6 +55,12 @@
             ORSO contribed by Employer (Annual): {{getOrsoEmplr() | currency}} <br>
             MPF contribed by Employer (Annual):  {{getMpf() | currency}} <br>
             Difference:                          {{getOrsoMpfDiff() | currency}}
+        </div>
+        <h2>Termination Payments</h2>
+        <div>
+            Statutory payment amount: {{getStatutory() | currency}} <br>
+            Severance Payment amount: {{getSeverance() | currency}} <br>
+            Total Termination payment: {{getTotalTermPay() | currency}}
         </div>
         <h2>Your Package</h2>
         <div>
