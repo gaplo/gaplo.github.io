@@ -24,7 +24,7 @@
             Number of Annual Leave(s): <input type="number" min="0" ng-model="leave" placeholder="Enter the number of annual leave(s)">
         </div>
         <div>
-            Meal Claim/Call out: <input type="number" ng-model="meal" placeholder="Enter meal claim or call out amount">
+            Meal Claim/Call out: <input type="number" min="0" step="0.01" ng-model="meal" placeholder="Enter meal claim or call out amount">
         </div>
         <div>
             Spouse/Domestic partner: <input type="checkbox" ng-model="spouse">
@@ -55,7 +55,8 @@
         <h2>Your Package</h2>
         <div>
             Total (annual):  {{getTotal() | currency}} <br>
-            Total (monthly): {{getTotal()/12 | currency}}
+            Total (monthly): {{getTotal()/12 | currency}} <br>
+            Breakeven increment: {{getBreakEvenPercent() | number:2}}%
         </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>

@@ -76,5 +76,9 @@ app.controller('CalcCtrl', ['$scope', '$window', 'config',
         $scope.getTotal = function() {
             return $scope.base + $scope.getOrsoMpfDiff() + $scope.meal + $scope.bonus + $scope.getInsuranceTotal() + $scope.getAnnualLeaveValuePerYear();
         };
+
+        $scope.getBreakEvenPercent = function() {
+            return _.round(($scope.getTotal()/$scope.base - 1)*100, 2);
+        }
     }
 ]);
