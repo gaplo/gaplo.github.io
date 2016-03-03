@@ -92,46 +92,150 @@
     <div class="row">
       <div class="col-xs-6 form-group">
         <label for="spouse" class="control-label">Spouse/Domestic partner</label>
-        <input type="checkbox" class="form-control" id="spouse" ng-model="spouse">
+        <span class="input-group-addon">
+          <input type="checkbox" id="spouse" ng-model="spouse" aria-label="...">
+        </span>
       </div>
       <div class="col-xs-6 form-group">
 				<label for="children" class="control-label">Number of child/children</label>
         <input type="number" min="0" step="1" class="form-control" id="children" ng-model="children" placeholder="Children">
 			</div>
     </div>
-    <h3>Flex Credit Entitlement</h3>
-        <div>
-            Insurance Credits:                 {{getInsurance() | currency}} <br>
-            Standard Credits:                  {{getStdInsurance() | currency}} <br>
-            Spouse / Domestic Partner Credits: {{getSpouseInsurance() | currency}} <br>
-            Children Credits:                  {{getChildrenInsurance() | currency}} <br>
-            Health Screening:                  {{getHealthScreeningValue() | currency}} <br>
-            Total Medical Credits:             {{getInsuranceTotal() | currency}}
-        </div>
-        <h3>Annual Leave Monetary Value</h3>
-        <div>
-            Daily rate: {{getDailyRate() | currency}} <br>
-            Annual:  {{getAnnualLeaveValuePerYear()| currency}}
-        </div>
-        <h2>ORSO</h2>
-        <div>
-			      ORSO employer contribution: {{getOrsoEmplrPercent() | number:2}} <br>
-            ORSO contribed by Employer (Annual): {{getOrsoEmplr() | currency}} <br>
-            MPF contribed by Employer (Annual):  {{getMpf() | currency}} <br>
-            Difference:                          {{getOrsoMpfDiff() | currency}}
-        </div>
-        <h2>Termination Payments</h2>
-        <div>
-            Statutory payment amount: {{getStatutory() | currency}} <br>
-            Severance Payment amount: {{getSeverance() | currency}} <br>
-            Total Termination payment: {{getTotalTermPay() | currency}}
-        </div>
-        <h2>Your Package</h2>
-        <div>
-            Total (annual):  {{getTotal() }} <br>
-            Total (monthly): {{getTotal()/12 | currency}} <br>
-            Breakeven increment: {{getBreakEvenPercent() | number:2}}%
-        </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Flex Credit Entitlement</h3>
+      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+            <td>Insurance Credits</td>
+            <td><span ng-bind="getInsurance()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+            <td>Standard Credits</td>
+            <td><span ng-bind="getStdInsurance()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+            <td>Spouse / Domestic Partner Credits</td>
+            <td><span ng-bind="getSpouseInsurance()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+            <td>Children Credits</td>
+            <td><span ng-bind="getChildrenInsurance()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+            <td>Health Screening</td>
+            <td><span ng-bind="getHealthScreeningValue()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+            <td>Total Medical Credits</td>
+            <td><span ng-bind="getInsuranceTotal()|currency"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Annual Leave Monetary Value</h3>
+      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+            <td>Daily Rate</td>
+            <td><span ng-bind="getDailyRate()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+            <td>Annual Rate</td>
+            <td><span ng-bind="getAnnualLeaveValuePerYear()|currency"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Occupational Retirement Schemes Ordinance</h3>
+      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span></td>
+            <td>ORSO employer contribution</td>
+            <td><span ng-bind="getOrsoEmplrPercent()|number:2"></span>%</td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+            <td>ORSO contributed by Employer (Annual)</td>
+            <td><span ng-bind="getOrsoEmplr()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></td>
+            <td>MPF contributed by Employer (Annual)</td>
+            <td><span ng-bind="getMpf()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+            <td>ORSO - MPF Difference</td>
+            <td><span ng-bind="getOrsoMpfDiff()|currency"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Termination Payment</h3>
+      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+            <td>Statutory Payment Amount</td>
+            <td><span ng-bind="getStatutory()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+            <td>Severance Payment Amount</td>
+            <td><span ng-bind="getSeverance()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+            <td>Total Termination Payment</td>
+            <td><span ng-bind="getTotalTermPay()|currency"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Your Total Compensation Package Worth</h3>
+      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+            <td>Total (annual)</td>
+            <td><span ng-bind="getTotal()|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+            <td>Total (monthly)</td>
+            <td><span ng-bind="getTotal()/12|currency"></span></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+            <td>Breakeven increment (for contract without benefit)</td>
+            <td><span ng-bind="getBreakEvenPercent()|number:2"></span>%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
