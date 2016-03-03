@@ -8,7 +8,8 @@ app.constant('config', {
     'ORSO_EMPLOYER_CON_MIN': 10.00,  // ORSO - Employer min contribution 10.00%
     'ORSO_EMPLOYER_CON_MAX': 12.50,  // ORSO - Employer max contribution 12.50%
     'STATUTORY_MAX': 22500.00,       // Termination payment - max monthly wages
-    'STATUTORY_FACTOR': 2/3          // Termination payment - Statutory Payment amount factor
+    'STATUTORY_FACTOR': 2/3,         // Termination payment - Statutory Payment amount factor
+    'SEVERANCE_MAX_YEAR': 12         // Termination payment - max severance years is 12
 });
 
 app.controller('CalcCtrl', ['$scope', '$window', 'config',
@@ -28,7 +29,7 @@ app.controller('CalcCtrl', ['$scope', '$window', 'config',
         $scope.children=0;
 
         $scope.getMonthlyWages = function() {
-            return _.round($scope.base/12, 2);
+            return _.ceil($scope.base/12, 0);
         }
 
         $scope.getMpf = function() {
@@ -87,12 +88,21 @@ app.controller('CalcCtrl', ['$scope', '$window', 'config',
             return _.round(($scope.getTotal()/$scope.base - 1)*100, 2);
         };
 
+        $scope.getDirConYear = function() {
+            return $scope.dirConYear + _.round($scope.dirConMonth/12, 2);
+        };
+
+        $scope.getPermYear = function() {
+            return $scope.permYear + _.round($scope.permMonth/12, 2);
+        }
+
         $scope.getStatutory = function() {
-            return _.round(_.min([config.STATUTORY_MAX, $scope.getMonthlyWages()]) * config.STATUTORY_FACTOR * ($scope.dirConYear + $scope.permYear), 2);
+            return _.round(_.min([config.STATUTORY_MAX, $scope.getMonthlyWages()]) * config.STATUTORY_FACTOR * ($scope.getDirConYear() + $scope.getPermYear()), 2);
         };
 
         $scope.getSeverance = function() {
-            return _.round($scope.permYear * $scope.getMonthlyWages() + $scope.dirConYear * _.min([config.STATUTORY_MAX, $scope.getMonthlyWages()]) * config.STATUTORY_FACTOR - $scope.getStatutory(), 2);
+            var permYear = _.min([config.SEVERANCE_MAX_YEAR, $scope.getPermYear()]);
+            return _.round(permYear * $scope.getMonthlyWages() + $scope.getDirConYear() * _.min([config.STATUTORY_MAX, $scope.getMonthlyWages()]) * config.STATUTORY_FACTOR - $scope.getStatutory(), 2);
         };
 
         $scope.getTotalTermPay = function() {
