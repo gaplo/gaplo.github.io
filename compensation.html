@@ -16,17 +16,17 @@
 			<div class="form-group">
 				<label for="mpfEmployer" class="col-sm-4 control-label">MPF employer contribution</label>
 				<div class="input-group col-sm-2">
-					<input type="text" class="form-control" ng-model="mpfEmployer" id="mpfEmployer" placeholder="Contribution">
+					<input type="number" min="0" step="0.01" class="form-control" ng-model="mpfEmployer" id="mpfEmployer" placeholder="Contribution">
 					<div class="input-group-addon">%</div>
 				</div>
 				<label for="mpfEmployerCap" class="col-sm-4 control-label">MPF contribution cap amount</label>
 				<div class="input-group col-sm-2">
 					<div class="input-group-addon">$</div>
-					<input type="text" class="form-control" ng-model="mpfEmployerCap" id="mpfEmployerCap" placeholder="Amount">
+					<input type="number" min="0" step="0.01" class="form-control" ng-model="mpfEmployerCap" id="mpfEmployerCap" placeholder="Amount">
 				</div>
 				<label for="workingDay" class="col-sm-4 control-label">Working Days per year</label>
 				<div class="input-group col-sm-2">
-					<input type="text" class="form-control" ng-model="workingDay" id="workingDay" placeholder="Day(s)">
+					<input type="number" min="0" step="1" class="form-control" ng-model="workingDay" id="workingDay" placeholder="Day(s)">
 					<div class="input-group-addon">Day(s)</div>
 				</div>
 			</div>
@@ -37,14 +37,14 @@
 				<label for="base" class="control-label">Annual Base Salary</label>
 				<div class="input-group">
 					<div class="input-group-addon">$</div>
-					<input type="text" class="form-control" id="base" ng-model="base" placeholder="Amount">
+					<input type="number" min="0" step="0.01" class="form-control" id="base" ng-model="base" placeholder="Amount">
 				</div>
 			</div>
 			<div class="col-xs-6 form-group">
 				<label for="bonus" class="control-label">Incentive Bonus</label>
 				<div class="input-group">
 					<div class="input-group-addon">$</div>
-					<input type="text" class="form-control" id="bonus" ng-model="bonus" placeholder="Amount">
+					<input type="number" min="0" step="0.01" class="form-control" id="bonus" ng-model="bonus" placeholder="Amount">
 				</div>
 			</div>
 		</div>
@@ -52,32 +52,54 @@
 			<div class="col-xs-6 form-group">
 				<label for="orsoEmployee" class="control-label">ORSO employee contribution</label>
 				<div class="input-group">
-					<input type="text" class="form-control" id="orsoEmployee" ng-model="orsoEmployee" placeholder="Percentage">
+					<input type="number" min="0" step="0.5" class="form-control" id="orsoEmployee" ng-model="orsoEmployee" placeholder="Percentage">
 					<div class="input-group-addon">%</div>
 				</div>
 			</div>
 			<div class="col-xs-6 form-group">
 				<label for="leave" class="control-label">Number of Annual Leave(s)</label>
 				<div class="input-group">
-					<input type="text" class="form-control" id="leave" ng-model="leave" placeholder="Day(s)">
+					<input type="number" min="0" step="1" class="form-control" id="leave" ng-model="leave" placeholder="Day(s)">
 					<div class="input-group-addon">Day(s)</div>
 				</div>
 			</div>
 		</div>
-			<div>
-				Year(s) of direct contract: <input type="number" min="0" step="0.01" ng-model="dirConYear" placeholder="Enter year(s) of direct contract"><br>
-				Year(s) of service (permanent): <input type="number" min="0" step="0.01" ng-model="permYear" placeholder="Enter year(s) of service (permanent)">
+    <div class="row">
+      <div class="col-xs-6 form-group">
+        <label for="dirConYear" class="control-label">Year(s) of direct contract</label>
+        <div class="input-group">
+          <input type="number" min="0" step="0.01" class="form-control" id="dirConYear" ng-model="dirConYear" placeholder="Year(s)">
+          <div class="input-group-addon">Year(s)</div>
+        </div>
+      </div>
+      <div class="col-xs-6 form-group">
+        <label for="permYear" class="control-label">Year(s) of permanent service</label>
+        <div class="input-group">
+          <input type="number" min="0" step="0.01" class="form-control" id="permYear" ng-model="permYear" placeholder="Year(s)">
+          <div class="input-group-addon">Year(s)</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 form-group">
+        <label for="meal" class="control-label">Meal Claim/Call out</label>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input type="number" min="0" step="0.01" class="form-control" id="meal" ng-model="meal" placeholder="Amount">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 form-group">
+        <label for="spouse" class="control-label">Spouse/Domestic partner</label>
+        <input type="checkbox" class="form-control" id="spouse" ng-model="spouse">
+      </div>
+      <div class="col-xs-6 form-group">
+				<label for="children" class="control-label">Number of child/children</label>
+        <input type="number" min="0" step="1" class="form-control" id="children" ng-model="children" placeholder="Children">
 			</div>
-			<div>
-				Meal Claim/Call out: <input type="number" min="0" step="0.01" ng-model="meal" placeholder="Enter meal claim or call out amount">
-			</div>
-			<div>
-				Spouse/Domestic partner: <input type="checkbox" ng-model="spouse">
-			</div>
-			<div>
-				Number of child/children: <input type="number" min="0" ng-model="children" placeholder="Enter number of children">
-			</div>
-        <h2>Flex Credit Entitlement</h2>
+    </div>
+    <h3>Flex Credit Entitlement</h3>
         <div>
             Insurance Credits:                 {{getInsurance() | currency}} <br>
             Standard Credits:                  {{getStdInsurance() | currency}} <br>
@@ -86,14 +108,14 @@
             Health Screening:                  {{getHealthScreeningValue() | currency}} <br>
             Total Medical Credits:             {{getInsuranceTotal() | currency}}
         </div>
-        <h2>Annual Leave Monetary Value</h2>
+        <h3>Annual Leave Monetary Value</h3>
         <div>
             Daily rate: {{getDailyRate() | currency}} <br>
             Annual:  {{getAnnualLeaveValuePerYear()| currency}}
         </div>
         <h2>ORSO</h2>
         <div>
-			ORSO employer contribution: {{getOrsoEmplrPercent() | number:2}} <br>
+			      ORSO employer contribution: {{getOrsoEmplrPercent() | number:2}} <br>
             ORSO contribed by Employer (Annual): {{getOrsoEmplr() | currency}} <br>
             MPF contribed by Employer (Annual):  {{getMpf() | currency}} <br>
             Difference:                          {{getOrsoMpfDiff() | currency}}
@@ -106,7 +128,7 @@
         </div>
         <h2>Your Package</h2>
         <div>
-            Total (annual):  {{getTotal() | currency}} <br>
+            Total (annual):  {{getTotal() }} <br>
             Total (monthly): {{getTotal()/12 | currency}} <br>
             Breakeven increment: {{getBreakEvenPercent() | number:2}}%
         </div>
