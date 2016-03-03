@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body ng-app="compensation" ng-controller="CalcCtrl">
+        <h2>General Parameters</h2>
+        <div>
+            MPF employer contribution: <input type="number" min="0" step="0.01" ng-model="mpfEmployer" placeholder="MPF employer contribution">% <br>
+            MPF contribution cap: <input type="number" min="0" step="0.01" ng-model="mpfEmployerCap" placeholder="MPF employer contribution cap"><br>
+            Working Days per year: <input type="number" min="0" step="1" ng-model="workingDay" placeholder="Number of working days per year">
+        </div>
+        <h2>Your information</h2>
+        <div>
+            Annual Base Salary: <input type="number" min="0" ng-model="base" placeholder="Enter base annual salary">
+        </div>
+        <div>
+            ORSO employee contribution: <input type="number" min="0" step="0.5" ng-model="orsoEmployee" placeholder="Enter ORSO employee contribution">% <br>
+            ORSO employer contribution: {{getOrsoEmplrPercent() | number:2}}
+        </div>
+        <div>
+            Incentive Bonus: <input type="number" min="0" step="0.01" ng-model="bonus" placeholder="Enter incentive bonus">
+        </div>
+        <div>
+            Number of Annual Leave(s): <input type="number" min="0" ng-model="leave" placeholder="Enter the number of annual leave(s)">
+        </div>
+        <div>
+            Meal Claim/Call out: <input type="number" ng-model="meal" placeholder="Enter meal claim or call out amount">
+        </div>
+        <div>
+            Spouse/Domestic partner: <input type="checkbox" ng-model="spouse">
+        </div>
+        <div>
+            Number of child/children: <input type="number" min="0" ng-model="children" placeholder="Enter number of children">
+        </div>
+        <h2>Flex Credit Entitlement</h2>
+        <div>
+            Insurance Credits:                 {{getInsurance() | currency}} <br>
+            Standard Credits:                  {{getStdInsurance() | currency}} <br>
+            Spouse / Domestic Partner Credits: {{getSpouseInsurance() | currency}} <br>
+            Children Credits:                  {{getChildrenInsurance() | currency}} <br>
+            Health Screening:                  {{getHealthScreeningValue() | currency}} <br>
+            Total Medical Credits:             {{getInsuranceTotal() | currency}}
+        </div>
+        <h2>Annual Leave Monetary Value</h2>
+        <div>
+            Daily rate: {{getDailyRate() | currency}} <br>
+            Annual:  {{getAnnualLeaveValuePerYear()| currency}}
+        </div>
+        <h2>ORSO</h2>
+        <div>
+            ORSO contribed by Employer (Annual): {{getOrsoEmplr() | currency}} <br>
+            MPF contribed by Employer (Annual):  {{getMpf() | currency}} <br>
+            Difference:                          {{getOrsoMpfDiff() | currency}}
+        </div>
+        <h2>Your Package</h2>
+        <div>
+            Total (annual):  {{getTotal() | currency}} <br>
+            Total (monthly): {{getTotal()/12 | currency}}
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.6.1/lodash.min.js"></script>
+    <script src="app.js"></script>
+</html>
