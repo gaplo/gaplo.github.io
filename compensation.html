@@ -5,67 +5,83 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Package Calculator</title>
+        <link rel="stylesheet" href="package.css">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     </head>
-    <body ng-app="compensation" ng-controller="CalcCtrl">
+    <body ng-app="compensation" ng-controller="CalcCtrl" class="container-fluid ng-scope">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Your information</h3>
         </div>
         <div class="panel-body">
-      		<div class="row">
-      			<div class="col-xs-6 form-group">
-      				<label for="base" class="control-label">Annual Base Salary</label>
-      				<div class="input-group">
-      					<div class="input-group-addon">$</div>
-      					<input type="number" min="0" step="0.01" class="form-control" id="base" ng-model="base" placeholder="Amount">
-      				</div>
-      			</div>
-      			<div class="col-xs-6 form-group">
-      				<label for="bonus" class="control-label">Incentive Bonus</label>
-      				<div class="input-group">
-      					<div class="input-group-addon">$</div>
-      					<input type="number" min="0" step="0.01" class="form-control" id="bonus" ng-model="bonus" placeholder="Amount">
-      				</div>
-      			</div>
-      		</div>
-      		<div class="row">
-      			<div class="col-xs-6 form-group">
-      				<label for="orsoEmployee" class="control-label">ORSO employee contribution</label>
-      				<div class="input-group">
-      					<input type="number" min="0" step="0.5" class="form-control" id="orsoEmployee" ng-model="orsoEmployee" placeholder="Percentage">
-      					<div class="input-group-addon">%</div>
-      				</div>
-      			</div>
-      			<div class="col-xs-6 form-group">
-      				<label for="leave" class="control-label">Number of Annual Leave(s)</label>
-      				<div class="input-group">
-      					<input type="number" min="0" step="1" class="form-control" id="leave" ng-model="leave" placeholder="Day(s)">
-      					<div class="input-group-addon">Day(s)</div>
-      				</div>
-      			</div>
-      		</div>
+            <div class="row">
+                <div class="col-xs-6 form-group">
+                    <label for="base" class="control-label">Annual Base Salary</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input type="number" min="0" step="0.01" class="form-control amount" id="base" ng-model="base" placeholder="Amount">
+                    </div>
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label for="bonus" class="control-label">Incentive Bonus</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input type="number" min="0" step="0.01" class="form-control amount" id="bonus" ng-model="bonus" placeholder="Amount">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 form-group">
+                    <label for="orsoEmployee" class="control-label">ORSO employee contribution</label>
+                    <div class="input-group">
+                        <input type="number" min="0" step="0.5" class="form-control amount" id="orsoEmployee" ng-model="orsoEmployee" placeholder="Percentage">
+                        <div class="input-group-addon">%</div>
+                    </div>
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label for="leave" class="control-label">Number of Annual Leave(s)</label>
+                    <div class="input-group">
+                        <input type="number" min="0" step="1" class="form-control amount" id="leave" ng-model="leave" placeholder="Day(s)">
+                        <div class="input-group-addon">Day(s)</div>
+                    </div>
+                </div>
+            </div>
           <div class="row">
             <div class="col-xs-6 form-group">
               <label for="dirConYear" class="control-label">Year(s) of direct contract</label>
               <div class="input-group">
-                <input type="number" min="0" step="1" class="form-control" id="dirConYear" ng-model="dirConYear" placeholder="Year(s)">
+                <input type="number" min="0" step="1" class="form-control amount" id="dirConYear" ng-model="dirConYear" placeholder="Year">
                 <div class="input-group-addon">Year(s)</div>
-                <input type="number" min="0" max="11" step="1" class="form-control" id="dirConMonth" ng-model="dirConMonth" placeholder="Month(s)">
+                <input type="number" min="0" max="11" step="1" class="form-control amount" id="dirConMonth" ng-model="dirConMonth" placeholder="Month">
                 <div class="input-group-addon">Month(s)</div>
               </div>
             </div>
             <div class="col-xs-6 form-group">
               <label for="permYear" class="control-label">Year(s) of permanent service</label>
               <div class="input-group">
-                <input type="number" min="0" step="1" class="form-control" id="permYear" ng-model="permYear" placeholder="Year(s)">
+                <input type="number" min="0" step="1" class="form-control amount" id="permYear" ng-model="permYear" placeholder="Year">
                 <div class="input-group-addon">Year(s)</div>
-                <input type="number" min="0" max="11" step="1" class="form-control" id="permMonth" ng-model="permMonth" placeholder="Month(s)">
+                <input type="number" min="0" max="11" step="1" class="form-control amount" id="permMonth" ng-model="permMonth" placeholder="Month">
                 <div class="input-group-addon">Month(s)</div>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 form-group">
+                <label class="control-label white-hack" aria-hidden="true">.</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input type="checkbox" id="spouse" ng-model="spouse" aria-label="...">
+                    </span>
+                    <label for="spouse" class="control-label form-control">Spouse/Domestic partner</label>
+                </div>
+            </div>
+            <div class="col-xs-6 form-group">
+              <label for="children" class="control-label">Number of child/children</label>
+              <input type="number" min="0" step="1" class="form-control amount" id="children" ng-model="children" placeholder="Children">
             </div>
           </div>
           <div class="row">
@@ -73,21 +89,9 @@
               <label for="meal" class="control-label">Meal Claim/Call out</label>
               <div class="input-group">
                 <div class="input-group-addon">$</div>
-                <input type="number" min="0" step="0.01" class="form-control" id="meal" ng-model="meal" placeholder="Amount">
+                <input type="number" min="0" step="0.01" class="form-control amount" id="meal" ng-model="meal" placeholder="Amount">
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-6 form-group">
-              <label for="spouse" class="control-label">Spouse/Domestic partner</label>
-              <span class="input-group-addon">
-                <input type="checkbox" id="spouse" ng-model="spouse" aria-label="...">
-              </span>
-            </div>
-            <div class="col-xs-6 form-group">
-      				<label for="children" class="control-label">Number of child/children</label>
-              <input type="number" min="0" step="1" class="form-control" id="children" ng-model="children" placeholder="Children">
-      			</div>
           </div>
         </div>
       </div>
@@ -96,29 +100,29 @@
           <h3 class="panel-title">General Parameters</h3>
         </div>
         <div class="panel-body">
-      		<form class="form-inline">
-      			<div class="form-group">
-      				<label for="mpfEmployer" class="control-label">MPF employer contribution</label>
-      				<div class="input-group">
-      					<input type="number" min="0" step="0.01" class="form-control" ng-model="mpfEmployer" id="mpfEmployer" placeholder="Contribution">
-      					<div class="input-group-addon">%</div>
-      				</div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="mpfEmployer" class="control-label">MPF employer contribution</label>
+                    <div class="input-group">
+                        <input type="number" min="0" step="0.01" class="form-control" ng-model="mpfEmployer" id="mpfEmployer" placeholder="Contribution">
+                        <div class="input-group-addon">%</div>
+                    </div>
             </div>
             <div class="form-group">
-      				<label for="mpfEmployerCap" class="control-label">MPF contribution cap amount</label>
-      				<div class="input-group">
-      					<div class="input-group-addon">$</div>
-      					<input type="number" min="0" step="0.01" class="form-control" ng-model="mpfEmployerCap" id="mpfEmployerCap" placeholder="Amount">
-      				</div>
+                    <label for="mpfEmployerCap" class="control-label">MPF contribution cap amount</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input type="number" min="0" step="0.01" class="form-control" ng-model="mpfEmployerCap" id="mpfEmployerCap" placeholder="Amount">
+                    </div>
             </div>
             <div class="form-group">
-      				<label for="workingDay" class="control-label">Working Days per year</label>
-      				<div class="input-group">
-      					<input type="number" min="0" step="1" class="form-control" ng-model="workingDay" id="workingDay" placeholder="Day(s)">
-      					<div class="input-group-addon">Day(s)</div>
-      				</div>
-      			</div>
-      		</form>
+                    <label for="workingDay" class="control-label">Working Days per year</label>
+                    <div class="input-group">
+                        <input type="number" min="0" step="1" class="form-control" ng-model="workingDay" id="workingDay" placeholder="Day(s)">
+                        <div class="input-group-addon">Day(s)</div>
+                    </div>
+                </div>
+            </form>
         </div>
       </div>
     <div class="panel panel-default">
