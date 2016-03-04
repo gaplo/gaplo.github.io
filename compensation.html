@@ -10,6 +10,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
     <body ng-app="compensation" ng-controller="CalcCtrl" class="container-fluid ng-scope">
       <div class="panel panel-default">
@@ -71,12 +78,12 @@
           </div>
           <div class="row">
             <div class="col-xs-6 form-group">
-                <label class="control-label white-hack" aria-hidden="true">.</label>
+                <label for="spouse" class="control-label">Spouse/Domestic partner</label>
                 <div class="input-group">
                     <span class="input-group-addon">
                         <input type="checkbox" id="spouse" ng-model="spouse" aria-label="...">
                     </span>
-                    <label for="spouse" class="control-label form-control">Spouse/Domestic partner</label>
+                    <label for="spouse" class="control-label form-control" aria-hidden="true"></label>
                 </div>
             </div>
             <div class="col-xs-6 form-group">
@@ -104,7 +111,7 @@
                 <div class="form-group">
                     <label for="mpfEmployer" class="control-label">MPF employer contribution</label>
                     <div class="input-group">
-                        <input type="number" min="0" step="0.01" class="form-control" ng-model="mpfEmployer" id="mpfEmployer" placeholder="Contribution">
+                        <input type="number" min="0" step="0.01" class="form-control amount" ng-model="mpfEmployer" id="mpfEmployer" placeholder="Contribution">
                         <div class="input-group-addon">%</div>
                     </div>
             </div>
@@ -112,13 +119,13 @@
                     <label for="mpfEmployerCap" class="control-label">MPF contribution cap amount</label>
                     <div class="input-group">
                         <div class="input-group-addon">$</div>
-                        <input type="number" min="0" step="0.01" class="form-control" ng-model="mpfEmployerCap" id="mpfEmployerCap" placeholder="Amount">
+                        <input type="number" min="0" step="0.01" class="form-control amount" ng-model="mpfEmployerCap" id="mpfEmployerCap" placeholder="Amount">
                     </div>
             </div>
             <div class="form-group">
                     <label for="workingDay" class="control-label">Working Days per year</label>
                     <div class="input-group">
-                        <input type="number" min="0" step="1" class="form-control" ng-model="workingDay" id="workingDay" placeholder="Day(s)">
+                        <input type="number" min="0" step="1" class="form-control amount" ng-model="workingDay" id="workingDay" placeholder="Day(s)">
                         <div class="input-group-addon">Day(s)</div>
                     </div>
                 </div>
